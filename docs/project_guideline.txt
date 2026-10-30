@@ -1,0 +1,45 @@
+Phase 0: Setup (tonight)
+-- Set up a Python venv and requirements.txt (torch, numpy, matplotlib, pyserial)
+-- Download the QuickDraw numpy bitmap .npy files for your classes
+-- Pick 10 classes deliberately. Choose ones that are easy to draw quickly and visually distinct (e.g. cat vs. bicycle, not cat vs. dog). Write down why you picked them.
+
+Phase 1: Float model
+-- Load and inspect the data: plot samples, normalize, train/test split (start around 10k images per class)
+-- Write the forward pass in numpy yourself and send it to me to review
+-- Train the 784→128→10 MLP in PyTorch
+-- Record accuracy plus a confusion matrix, which shows which classes get mixed up. Great writeup material.
+
+Phase 2: Quantization + golden model
+-- Quantize the weights and activations to int8, with requantization as multiply-then-shift
+-- Write an integer-only inference in Python that matches exactly what the hardware will do
+-- Compare float vs. int8 accuracy
+-- Export the weights as .mem hex files
+-- Dump the golden vectors: inputs, layer 1 outputs, and final scores
+
+Phase 3: Architecture spec (on paper before any RTL)
+-- Datapath and block diagram, controller FSM, memory map
+-- Bit widths: the accumulator needs to be about 24+ bits, so work out exactly why
+-- UART protocol: what the Mac sends and what comes back
+
+Phase 4: RTL + verification
+-- Build each block with a self-checking testbench you write, comparing against the golden vectors:
+-- MAC + ReLU + requantize
+-- Weight BRAMs
+-- Layer controller
+-- Layer 2 + argmax
+-- Full-network testbench over hundreds of test images
+-- Parameterize the layer sizes, since that’s what makes the design sweep possible later.
+
+Phase 5: Hardware integration
+-- UART RX into an input buffer (reuse from the CPU project), result out over UART TX and/or 7-seg
+-- Synthesize, meet timing, and record utilization
+-- Bring-up: send real test-set images from the Mac and confirm the predictions match the golden model
+
+Phase 6: Drawing app
+-- Canvas on the Mac, serial send, display the prediction
+-- The key gotcha: QuickDraw bitmaps were rendered from stroke data that was scaled to fill the frame with a specific line width. Your preprocessing has to reproduce that or live accuracy will tank. Study the dataset’s preprocessing before writing this.
+
+Phase 7: Measure + document
+-- Latency in cycles, resources, and speedup vs. your Mac’s CPU
+-- Design-space sweep (MAC width N vs. resources/latency) and the quantization study
+-- Architecture diagrams, README, and demo video
