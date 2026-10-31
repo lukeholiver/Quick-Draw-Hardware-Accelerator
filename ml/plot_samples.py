@@ -4,13 +4,13 @@ import os
 os.makedirs('docs/samples', exist_ok=True)
 
 CLASSES = ['boomerang', 'cat', 'eyeglasses', 'face', 'flower', 
-           'house', 'sailboat', 'sword', 'tree', 'umbrella']
+           'hat','house', 'sailboat','spider', 'sword']
 
 SAMPLES_PER_CLASS = 5
 
 # create a figure with one row per class, one column per sample
 
-fig, axes = plt.subplots(len(CLASSES), SAMPLES_PER_CLASS, figsize=(6, 12))
+fig, axes = plt.subplots(len(CLASSES), SAMPLES_PER_CLASS, figsize=(7, 7))
 
 # loop over classes
 
