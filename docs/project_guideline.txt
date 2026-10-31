@@ -1,7 +1,7 @@
-Phase 0: Setup (tonight)
--- Set up a Python venv and requirements.txt (torch, numpy, matplotlib, pyserial)
--- Download the QuickDraw numpy bitmap .npy files for your classes
--- Pick 10 classes deliberately. Choose ones that are easy to draw quickly and visually distinct (e.g. cat vs. bicycle, not cat vs. dog). Write down why you picked them.
+Phase 0: Setup
+    -- Set up a Python venv and requirements.txt (torch, numpy, matplotlib, pyserial)
+    -- Download the QuickDraw numpy bitmap .npy files for your classes
+    -- Pick 10 classes deliberately. Choose ones that are easy to draw quickly and visually distinct (e.g. cat vs. bicycle, not cat vs. dog). Write down why you picked them.
 
 Phase 1: Float model
 -- Load and inspect the data: plot samples, normalize, train/test split (start around 10k images per class)
