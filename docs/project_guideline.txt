@@ -4,10 +4,10 @@ Phase 0: Setup
     -- Pick 10 classes deliberately. Choose ones that are easy to draw quickly and visually distinct (e.g. cat vs. bicycle, not cat vs. dog). Write down why you picked them.
 
 Phase 1: Float model
--- Load and inspect the data: plot samples, normalize, train/test split (start around 10k images per class)
--- Write the forward pass in numpy yourself and send it to me to review
--- Train the 784→128→10 MLP in PyTorch
--- Record accuracy plus a confusion matrix, which shows which classes get mixed up. Great writeup material.
+    -- Load and inspect the data: plot samples, normalize, train/test split (start around 10k images per class)
+    -- Write the forward pass in numpy yourself and send it to me to review
+    -- Train the 784→128→10 MLP in PyTorch
+    -- Record accuracy plus a confusion matrix, which shows which classes get mixed up. Great writeup material.
 
 Phase 2: Quantization + golden model
 -- Quantize the weights and activations to int8, with requantization as multiply-then-shift

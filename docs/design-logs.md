@@ -26,6 +26,19 @@ top confusions (true -> predicted):
 I prediced that cat and face would be confused the most, but spider and cat had the most confusion. I'd assume wiskers on a cat could get confused for a spider's legs.
 
 Cheap experiment: run model with 40,000 images per class instead of 10,000:
-Results: no accuracy gains. 
+Results: no accuracy gains -> bottleneck is model structure not ammount of data
 
 Aiming for >=85% test accuracy
+
+Output from quantize.py:
+
+accuracy on test set:
+  float  87.89%
+  int8   87.93%   (change +0.04%)
+  int8 and float agree on 99.59% of images
+
+accumulator widths (signed bits):
+  layer 1: observed 21, worst case 26
+  layer 2: observed 17, worst case 23
+  requant product acc1*M0: observed max needs 35 bits
+  hidden activations clipped at 255: 0.000% of values
