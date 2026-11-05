@@ -13,4 +13,19 @@ Decided to remove tree and umbrella classes and replace them with spider and hat
 Umbrella, tree, and flower showed visual overlap; removals seek to prevent ambiguity
 
 Nov 5th
-Generate foward.py to run the model. ReLU passes through positive values and sets negative values to zero. Forward single runs a single image through the net. Forward batch runs 50 images through the net. The structure is 784 -> 128 -> 10. Script gives 16% accuracy before training with 5 images of each class (50 total)
+foward.py to run the model. ReLU passes through positive values and sets negative values to zero. Forward single runs a single image through the net. Forward batch runs 50 images through the net. The structure is 784 -> 128 -> 10. Script gives 16% accuracy before training with 5 images of each class (50 total)
+
+train.py to train the mode. 87.89% accuracy with 100% match compared with PyTorch over 20,000 test images. 
+top confusions (true -> predicted):
+  cat          -> spider       119 images
+  spider       -> cat          109 images
+  flower       -> spider       82 images
+  sailboat     -> hat          74 images
+  spider       -> flower       74 images
+
+I prediced that cat and face would be confused the most, but spider and cat had the most confusion. I'd assume wiskers on a cat could get confused for a spider's legs.
+
+Cheap experiment: run model with 40,000 images per class instead of 10,000:
+Results: no accuracy gains. 
+
+Aiming for >=85% test accuracy
